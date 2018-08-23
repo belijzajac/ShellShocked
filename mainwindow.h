@@ -1,8 +1,12 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "tank.h"
+
 #include <QMainWindow>
 #include <QPainter>
+
+#include <memory>
 
 namespace Ui {
 class MainWindow;
@@ -17,9 +21,21 @@ public:
     ~MainWindow();
 
     void paintEvent(QPaintEvent *event);
+    void drawParabola(QPainter &painter);
+
+    bool eventFilter(QObject *obj, QEvent *event);
+
+    float getHeight() const;
+    float getDistance() const;
+    float heightPerX(int x) const;
+
+    void updatePower() const;
+    void updateAngle() const;
 
 private:
     Ui::MainWindow *ui;
+
+    std::unique_ptr<green_tank> m_tank;
 };
 
 #endif // MAINWINDOW_H
