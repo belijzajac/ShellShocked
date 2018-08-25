@@ -52,7 +52,11 @@ void MainWindow::paintEvent(QPaintEvent *event)
     // To fix the viewpoit from top left corner (0,0) to (m_tank->getCoords().x(), m_tank->getCoords().y())
     QMatrix matrix;
     matrix.translate(m_tank->getCoords().x(), m_tank->getCoords().y()); // (0,0) to the middle of the tank square
-    matrix.scale(1, -1);                                                // scale Y axis by -1 factor (invert Y axis from upside down)
+
+    if(m_tank->getRightAimDir() == 1)
+        matrix.scale(1, -1);  // scale Y axis by -1 factor (invert Y axis from upside down), X axis goes ------>
+    else
+        matrix.scale(-1, -1); // scale Y axis by -1 factor (invert Y axis from upside down), X axis goes <------
 
     painter.setMatrix(matrix);
 
@@ -63,8 +67,8 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
 void MainWindow::drawParabola(QPainter &painter)
 {
-    float x_min = 10.8;
-    float x_max = 2 * getDistance();
+    float x_min = 0;
+    float x_max = this->width();
     float step = 0.5;
 
     QVector<QPointF> points;
@@ -91,6 +95,7 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         this->update(); // redraws QPainter on every click!
     }
 
+    // Some keyboard key was pressed
     if(event->type() == QEvent::KeyPress){
         QKeyEvent *keyEvent = static_cast<QKeyEvent*>(event);
 
@@ -122,19 +127,27 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
             updateAngle();
             this->update();
         }
+        // Change aim direction right <---> left
+        if(keyEvent->key() == Qt::Key_5){ // [5] was pressed
+            m_tank->changeAimDir();
+
+            updateAngle();
+            this->update();
+        }
     }
     return false;
 }
 
 float MainWindow::getHeight() const
 {
-    int gravity = 20;
-    return 9.80 * ( m_tank->getPower() * m_tank->getPower() * sin(m_tank->getAngle()) * sin(m_tank->getAngle()) ) / ( 2 * gravity );
+    float gravity = 9.8;
+    float accuracy_const = 1.02; // only this value [1,2] determines how accurate the parabola will be drawn drawn
+    return accuracy_const * ( m_tank->getPower() * m_tank->getPower() * sin( angleToRadians(m_tank->getAngle()) ) * sin( angleToRadians(m_tank->getAngle()) ) ) / ( 2 * gravity );
 }
 
 float MainWindow::getDistance() const
 {
-    return 1.38 * getHeight() / tan(m_tank->getAngle());
+    return 2 * getHeight() / tan( angleToRadians(m_tank->getAngle()) );
 }
 
 float MainWindow::heightPerX(int x) const
@@ -142,7 +155,12 @@ float MainWindow::heightPerX(int x) const
     float height = getHeight();
     float distance = getDistance();
 
-    return 4 * (- height / (distance * distance) * (x - distance) * (x - distance) + height);
+    return (-height / (distance * distance) * (x - distance) * (x - distance) + height);
+}
+
+float MainWindow::angleToRadians(float degrees) const
+{
+    return degrees * PI / 180;
 }
 
 void MainWindow::updatePower() const
@@ -152,5 +170,8 @@ void MainWindow::updatePower() const
 
 void MainWindow::updateAngle() const
 {
-    ui->angleLabel->setText("Angle: " + QString::number(m_tank->getAngle()));
+    if(m_tank->getRightAimDir() == -1)
+        ui->angleLabel->setText("Angle: " + QString::number(m_tank->getAngle() + 2 * (90 - m_tank->getAngle())));
+    else
+        ui->angleLabel->setText("Angle: " + QString::number(m_tank->getAngle()));
 }
