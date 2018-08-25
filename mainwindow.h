@@ -5,8 +5,9 @@
 
 #include <QMainWindow>
 #include <QPainter>
-
 #include <memory>
+
+const float PI = 3.1415;
 
 namespace Ui {
 class MainWindow;
@@ -28,6 +29,7 @@ public:
     float getHeight() const;
     float getDistance() const;
     float heightPerX(int x) const;
+    float angleToRadians(float degrees) const;
 
     void updatePower() const;
     void updateAngle() const;

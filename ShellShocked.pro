@@ -24,11 +24,12 @@ CONFIG += c++14
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        tank.cpp
 
 HEADERS += \
         mainwindow.h \
-    tank.h
+        tank.h
 
 FORMS += \
         mainwindow.ui

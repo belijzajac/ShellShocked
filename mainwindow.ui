@@ -35,7 +35,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Power: 74</string>
+     <string>Power: nan</string>
     </property>
    </widget>
    <widget class="QLabel" name="angleLabel">
@@ -53,7 +53,7 @@
      </font>
     </property>
     <property name="text">
-     <string>Angle: 53</string>
+     <string>Angle: nan</string>
     </property>
    </widget>
   </widget>
