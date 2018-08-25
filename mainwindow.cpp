@@ -43,7 +43,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 
     // Draw X and Y axis
     painter.setPen(Qt::yellow);
-    painter.drawLine(0, m_tank->getCoords().y() - 3, width(), m_tank->getCoords().y() - 3);
+    painter.drawLine(0, m_tank->getCoords().y() - 3, width() - 160, m_tank->getCoords().y() - 3);
     painter.drawLine(m_tank->getCoords().x(), 0, m_tank->getCoords().x(), height());
 
     // Draw a square
@@ -68,7 +68,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::drawParabola(QPainter &painter)
 {
     float x_min = 0;
-    float x_max = this->width();
+    float x_max = this->width() - 160;
     float step = 0.5;
 
     QVector<QPointF> points;
