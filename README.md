@@ -1,5 +1,9 @@
 # ShellShocked
 
+## In Action
+
+[![ShellShocked-video-gameplay](https://i.imgur.com/SXnQS7H.png)](https://www.youtube.com/watch?v=Y8vYkNeAsbE)
+
 ## The math behind ShellShocked
 
 ![ShellShocked-parabola](/img/parabola_graph.png)
