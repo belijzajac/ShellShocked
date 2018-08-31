@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>960</width>
+    <width>800</width>
     <height>545</height>
    </rect>
   </property>
@@ -19,44 +19,7 @@
   <property name="windowTitle">
    <string>ShellShocked</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="powerLabel">
-    <property name="geometry">
-     <rect>
-      <x>820</x>
-      <y>10</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Power: nan</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="angleLabel">
-    <property name="geometry">
-     <rect>
-      <x>820</x>
-      <y>50</y>
-      <width>161</width>
-      <height>31</height>
-     </rect>
-    </property>
-    <property name="font">
-     <font>
-      <pointsize>20</pointsize>
-     </font>
-    </property>
-    <property name="text">
-     <string>Angle: nan</string>
-    </property>
-   </widget>
-  </widget>
+  <widget class="QWidget" name="centralWidget"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
