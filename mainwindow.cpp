@@ -66,7 +66,7 @@ void MainWindow::paintEvent(QPaintEvent *event)
 void MainWindow::drawParabola(QPainter &painter)
 {
     float x_min = 0;
-    float x_max = this->width() - 160;
+    float x_max = this->width();
     float step = 0.5;
 
     QVector<QPointF> points;
