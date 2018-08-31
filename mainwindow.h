@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "tank.h"
+#include "aiminfo.h"
 
 #include <QMainWindow>
 #include <QPainter>
@@ -31,13 +32,11 @@ public:
     float heightPerX(int x) const;
     float angleToRadians(float degrees) const;
 
-    void updatePower() const;
-    void updateAngle() const;
-
 private:
     Ui::MainWindow *ui;
 
     std::unique_ptr<green_tank> m_tank;
+    std::unique_ptr<AimInfo> m_aiminfo;
 };
 
 #endif // MAINWINDOW_H

@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     m_tank = std::make_unique<green_tank>();
+    m_aiminfo = std::make_unique<AimInfo>();
+
+    m_aiminfo->show();
 
     // For the event filter to work
     installEventFilter(this);
@@ -20,10 +23,6 @@ MainWindow::MainWindow(QWidget *parent) :
     setParent(nullptr);
     setAttribute(Qt::WA_NoSystemBackground, true);
     setAttribute(Qt::WA_TranslucentBackground, true);
-
-    // Labels
-    ui->powerLabel->setStyleSheet("QLabel { color : yellow; }");
-    ui->angleLabel->setStyleSheet("QLabel { color : yellow; }");
 }
 
 MainWindow::~MainWindow()
@@ -39,11 +38,10 @@ void MainWindow::paintEvent(QPaintEvent *event)
     painter.setBrush(Qt::NoBrush);
     painter.setPen(QPen(Qt::green, 5));
     painter.drawRect(0, 0, 800, 545);
-    painter.drawRect(800, 0, 160, 100);
 
     // Draw X and Y axis
     painter.setPen(Qt::yellow);
-    painter.drawLine(0, m_tank->getCoords().y() - 3, width() - 160, m_tank->getCoords().y() - 3);
+    painter.drawLine(0, m_tank->getCoords().y() - 3, width(), m_tank->getCoords().y() - 3);
     painter.drawLine(m_tank->getCoords().x(), 0, m_tank->getCoords().x(), height());
 
     // Draw a square
@@ -103,35 +101,35 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         if(keyEvent->key() == Qt::Key_4){ // [4] was pressed
             m_tank->setPower(m_tank->getPower() - 1);
 
-            updatePower();
+            m_aiminfo->updatePower(m_tank);
             this->update();
         }
         // Increase power
         if(keyEvent->key() == Qt::Key_6){ // [6] was pressed
             m_tank->setPower(m_tank->getPower() + 1);
 
-            updatePower();
+            m_aiminfo->updatePower(m_tank);
             this->update();
         }
         // Descrease angle
         if(keyEvent->key() == Qt::Key_2){ // [2] was pressed
             m_tank->setAngle(m_tank->getAngle() - 1);
 
-            updateAngle();
+            m_aiminfo->updateAngle(m_tank);
             this->update();
         }
         // Increase angle
         if(keyEvent->key() == Qt::Key_8){ // [8] was pressed
             m_tank->setAngle(m_tank->getAngle() + 1);
 
-            updateAngle();
+            m_aiminfo->updateAngle(m_tank);
             this->update();
         }
         // Change aim direction right <---> left
         if(keyEvent->key() == Qt::Key_5){ // [5] was pressed
             m_tank->changeAimDir();
 
-            updateAngle();
+            m_aiminfo->updateAngle(m_tank);
             this->update();
         }
     }
@@ -161,17 +159,4 @@ float MainWindow::heightPerX(int x) const
 float MainWindow::angleToRadians(float degrees) const
 {
     return degrees * PI / 180;
-}
-
-void MainWindow::updatePower() const
-{
-    ui->powerLabel->setText("Power: " + QString::number(m_tank->getPower()));
-}
-
-void MainWindow::updateAngle() const
-{
-    if(m_tank->getRightAimDir() == -1)
-        ui->angleLabel->setText("Angle: " + QString::number(m_tank->getAngle() + 2 * (90 - m_tank->getAngle())));
-    else
-        ui->angleLabel->setText("Angle: " + QString::number(m_tank->getAngle()));
 }

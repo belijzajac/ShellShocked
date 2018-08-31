@@ -25,14 +25,17 @@ CONFIG += c++14
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
-        tank.cpp
+        tank.cpp \
+        aiminfo.cpp
 
 HEADERS += \
         mainwindow.h \
-        tank.h
+        tank.h \
+        aiminfo.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+        aiminfo.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
