@@ -12,8 +12,8 @@ ShellShocked is an aim helper for the game ShellShock Live 1 (flash version), wr
 
 | Numpad Key                     | Action                        |
 | ------------------------------ | ----------------------------- |
-| [4] or [6]                     | Descrease or inscrease power  |
-| [2] or [8]                     | Descrease or inscrease angle  |
+| [4] or [6]                     | Decrease or increase power  |
+| [2] or [8]                     | Decrease or increase angle  |
 | [5]                            | Change aim direction          |
 
 ## In Action
