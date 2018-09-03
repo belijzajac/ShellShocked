@@ -33,3 +33,20 @@ When I put vertex (d, h) and then vertex (0,0), I get that variable <img src="ht
 
 <img src="http://latex.codecogs.com/gif.latex?h=\frac{v^{2}\cdot&space;(sin(\beta&space;))^{2}}{2\cdot&space;g}" title="h=\frac{v^{2}\cdot (sin(\beta ))^{2}}{2\cdot g}" />
 
+## Building and running
+
+1. To build the program, simply type:
+
+```
+$ qmake && make
+```
+	
+2. Move the built executable file to <b>/usr/local/bin/</b> by typing
+```
+$ chmod +x ShellShocked
+$ sudo cp ShellShocked /usr/local/bin
+```
+3. Run the program by typing
+```
+$ ShellShocked
+```
