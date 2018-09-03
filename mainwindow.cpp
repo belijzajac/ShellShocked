@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     m_tank = std::make_unique<green_tank>();
     m_aiminfo = std::make_unique<AimInfo>();
 
+    connect(m_aiminfo.get(), &AimInfo::closed, this, &MainWindow::closeApp);
     m_aiminfo->show();
 
     // For the event filter to work
@@ -159,4 +160,9 @@ float MainWindow::heightPerX(int x) const
 float MainWindow::angleToRadians(float degrees) const
 {
     return degrees * PI / 180;
+}
+
+void MainWindow::closeApp()
+{
+    this->close();
 }

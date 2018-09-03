@@ -16,11 +16,16 @@ class AimInfo : public QWidget
 
 public:
     explicit AimInfo(QWidget *parent = nullptr);
-    ~AimInfo();
+    ~AimInfo() override;
 
     // passing by reference to not take ownership of m_tank
     void updatePower(std::unique_ptr<green_tank> &m_tank) const;
     void updateAngle(std::unique_ptr<green_tank> &m_tank) const;
+
+    void closeEvent(QCloseEvent * event) override;
+
+signals:
+    void closed();
 
 private:
     Ui::AimInfo *ui;

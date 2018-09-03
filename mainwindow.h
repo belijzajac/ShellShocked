@@ -32,6 +32,9 @@ public:
     float heightPerX(int x) const;
     float angleToRadians(float degrees) const;
 
+public slots:
+    void closeApp();
+
 private:
     Ui::MainWindow *ui;
 

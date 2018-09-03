@@ -33,3 +33,8 @@ void AimInfo::updateAngle(std::unique_ptr<green_tank> &m_tank) const
     else
         ui->angleLabel->setText("Angle: " + QString::number(m_tank->getAngle()));
 }
+
+void AimInfo::closeEvent(QCloseEvent * event)
+{
+    emit closed();
+}
