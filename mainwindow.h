@@ -20,12 +20,12 @@ class MainWindow : public QMainWindow
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() override;
 
-    void paintEvent(QPaintEvent *event);
+    void paintEvent(QPaintEvent *event) override;
     void drawParabola(QPainter &painter);
 
-    bool eventFilter(QObject *obj, QEvent *event);
+    bool eventFilter(QObject *obj, QEvent *event) override;
 
     float getHeight() const;
     float getDistance() const;
