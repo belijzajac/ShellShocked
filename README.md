@@ -16,6 +16,14 @@ ShellShocked is an aim helper for the game ShellShock Live 1 (flash version), wr
 | [2] or [8]                     | Decrease or increase angle  |
 | [5]                            | Change aim direction          |
 
+## Goodies
+
+Run ShellShocked with `--frameless` command argument to obtain a frameless window (experimental feature and works only in KDE) as follows:
+
+```
+$ ./ShellShocked --frameless
+```
+
 ## In Action
 
 [![ShellShocked-video-gameplay](https://i.imgur.com/SXnQS7H.png)](https://www.youtube.com/watch?v=Y8vYkNeAsbE)
