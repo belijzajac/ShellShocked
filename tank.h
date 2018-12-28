@@ -18,13 +18,10 @@ public:
 
     void setCoords(const QPoint &coord) { this->m_coord = coord; }
     QPoint getCoords() const { return this->m_coord; }
-
     void setPower(int power);
     int getPower() const { return this->m_power; }
-
     void setAngle(int angle);
     int getAngle() const { return this->m_angle; }
-
     void changeAimDir(){ (rightAimDir == 1)? rightAimDir = -1 : rightAimDir = 1; }
     int getRightAimDir() const { return  this->rightAimDir; }
 };

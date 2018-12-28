@@ -24,6 +24,11 @@ MainWindow::MainWindow(QWidget *parent) :
     setParent(nullptr);
     setAttribute(Qt::WA_NoSystemBackground, true);
     setAttribute(Qt::WA_TranslucentBackground, true);
+
+    // Of course there had to be something that doesn't work on Windows...
+    #ifdef _WIN32
+        setWindowOpacity(0.5);
+    #endif
 }
 
 MainWindow::~MainWindow()
@@ -90,7 +95,6 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         int x = mouseEvent->pos().x();
         int y = mouseEvent->pos().y();
         m_tank->setCoords(QPoint(x, y));
-
         this->update(); // redraws QPainter on every click!
     }
 
@@ -101,35 +105,30 @@ bool MainWindow::eventFilter(QObject *obj, QEvent *event)
         // Descrease power
         if(keyEvent->key() == Qt::Key_4){ // [4] was pressed
             m_tank->setPower(m_tank->getPower() - 1);
-
             m_aiminfo->updatePower(m_tank);
             this->update();
         }
         // Increase power
         if(keyEvent->key() == Qt::Key_6){ // [6] was pressed
             m_tank->setPower(m_tank->getPower() + 1);
-
             m_aiminfo->updatePower(m_tank);
             this->update();
         }
         // Descrease angle
         if(keyEvent->key() == Qt::Key_2){ // [2] was pressed
             m_tank->setAngle(m_tank->getAngle() - 1);
-
             m_aiminfo->updateAngle(m_tank);
             this->update();
         }
         // Increase angle
         if(keyEvent->key() == Qt::Key_8){ // [8] was pressed
             m_tank->setAngle(m_tank->getAngle() + 1);
-
             m_aiminfo->updateAngle(m_tank);
             this->update();
         }
         // Change aim direction right <---> left
         if(keyEvent->key() == Qt::Key_5){ // [5] was pressed
             m_tank->changeAimDir();
-
             m_aiminfo->updateAngle(m_tank);
             this->update();
         }
