@@ -41,7 +41,7 @@ For Arch Linux, the following should be enough:
 
 	$ sudo pacman -S qt5-base
 
-## Building and running
+## Building and running (Linux/Mac OS)
 
 1. To build the program, simply type:
 
@@ -58,3 +58,7 @@ $ sudo cp ShellShocked /usr/local/bin
 ```
 $ ShellShocked
 ```
+
+## Note for Windows 7/8.1/10 users
+
+Download the latest release of compiled and packaged stand-alone program from https://github.com/belijzajac/ShellShocked/releases
